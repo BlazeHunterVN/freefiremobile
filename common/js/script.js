@@ -182,7 +182,6 @@ const overlayImage = document.getElementById('overlay-image');
 const nationDropdownLi = document.querySelector('.dropdown:not(.language-selector)');
 const languageSelectorLi = document.querySelector('.language-selector');
 const languageLinks = document.querySelectorAll('.language-menu a');
-const { StatsigClient } = window.Statsig;
 
 const homeBackgrounds = [
     '/common/image/background_free_fire_22.png',
@@ -190,6 +189,7 @@ const homeBackgrounds = [
     '/common/image/background_free_fire_63.png',
     '/common/image/background_free_fire_41.png',
 ];
+
 let currentBgIndex = 0;
 let slideshowInterval;
 
