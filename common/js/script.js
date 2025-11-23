@@ -152,7 +152,7 @@ const nationData = {
     },
     news: {
         images: [
-            { url: 'https://mega.nz/file/sNcHGDhS', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
+            { url: 'https://mega.nz/file/sNcHGDhS#uIpXGPIUYsLkoW7luzV4KuCrk5qVVQqzalP-49R0hwE', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/2025/11/FFxRedBull_20251119.png', startDate: '22/11/2025', bannerLink: 'https://redbulltcp.freefiremobile.com/?lang=vn&region=VN', title: 'FREE FIRE X REDBULL' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/1ba5e066c1fa66a9b192dc6b943187cb.png', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/en/article/1566/', title: 'THAILAND’S BURIRAM UNITED ESPORTS TRIUMPHS AS FREE FIRE’S NEW WORLD CHAMPION' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/94a6014336306edfca0eb84b30d62e5a.png', startDate: '20/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1568/', title: 'FREE FIRE CHÍNH THỨC KHỞI ĐỘNG SỰ KIỆN HỢP TÁC CÙNG DIGIMON ADVENTURE!' },
