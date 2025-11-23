@@ -145,15 +145,14 @@ const nationData = {
     },
     vietnam: {
         images: [
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251126_OB47VN_FW3_Say_JKT48_Bundle.png', startDate: '26/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251126_OB47VN_FW3_Say_JKT48_Bundle.png', title: 'FW3 Say JKT48 Bundle' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251123_OB47VN_TW5_Incu_PEKINGOPERA.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251123_OB47VN_TW5_Incu_PEKINGOPERA.png', title: 'TW5 Incu PEKINGOPERA' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251121_OB47VN_TW4_Bizon_MetalGreymon.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251121_OB47VN_TW4_Bizon_MetalGreymon.png', title: 'TW4 Bizon MetalGreymon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251117_OB47VN_Squad_Treasure_Digimon.png', startDate: '17/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251117_OB47VN_Squad_Treasure_Digimon.png', title: 'Squad Treasure Digimon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251117_OB47VN_TW3_M590_MetalGarurumon.png', startDate: '17/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251117_OB47VN_TW3_M590_MetalGarurumon.png', title: 'TW3 M590 MetalGarurumon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251116_OB47VN_FW3_Naatu_Naatu.png', startDate: '16/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251116_OB47VN_FW3_Naatu_Naatu.png', title: 'FW3 Naatu Naatu' },
         ]
     },
     news: {
         images: [
+            { url: 'https://mega.nz/file/sNcHGDhS', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/2025/11/FFxRedBull_20251119.png', startDate: '22/11/2025', bannerLink: 'https://redbulltcp.freefiremobile.com/?lang=vn&region=VN', title: 'FREE FIRE X REDBULL' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/1ba5e066c1fa66a9b192dc6b943187cb.png', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/en/article/1566/', title: 'THAILAND’S BURIRAM UNITED ESPORTS TRIUMPHS AS FREE FIRE’S NEW WORLD CHAMPION' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/94a6014336306edfca0eb84b30d62e5a.png', startDate: '20/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1568/', title: 'FREE FIRE CHÍNH THỨC KHỞI ĐỘNG SỰ KIỆN HỢP TÁC CÙNG DIGIMON ADVENTURE!' },
@@ -453,7 +452,6 @@ navLinks.forEach(link => {
 
 
         if (window.innerWidth <= 768) {
-            // Xử lý toggle cho dropdown Nation
             if (isDropdownLink && !isCountryLink && path === '/nation') {
                 if (nationDropdownLi) {
                     nationDropdownLi.classList.toggle('active');
