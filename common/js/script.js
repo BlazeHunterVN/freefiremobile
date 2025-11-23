@@ -65,7 +65,8 @@ function applyTranslation(langKey) {
     const currentPath = window.location.pathname;
     const parts = currentPath.split('/');
     const key = parts[parts.length - 1];
-    if (nationSection.classList.contains('active') || newsSection.classList.contains('active')) {
+    // Kiểm tra xem các section có tồn tại không trước khi truy cập classList
+    if (nationSection && newsSection && (nationSection.classList.contains('active') || newsSection.classList.contains('active'))) {
         updateSectionHeadings(currentPath, key);
     }
 }
@@ -136,7 +137,7 @@ const nationData = {
     thailand: {
         images: [
             { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', startDate: '20/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', title: '2025Nov FA DIGI Weekly Login days OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', title: 'Nov25 Group Topup' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', title: 'Nov25 GroupTopup' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Deal_damage_Weapon_Type_OverviewBG_1.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Deal_damage_Weapon_Type_OverviewBG_1.png', title: '2025Nov FA DIGI Weekly Deal damage Weapon Type OverviewBG 1' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TH Nov25 TW5 DA Bizon' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', title: '2025Nov FA DIGI FlexHigh Playwithfriends games OverviewBG 1' },
@@ -152,7 +153,7 @@ const nationData = {
     },
     news: {
         images: [
-            { url: '/common/image/free_fire_advance_server.png', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
+            { url: 'https://ik.imagekit.io/blazehunter/free_fire_advance_server_ob52.png', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/2025/11/FFxRedBull_20251119.png', startDate: '22/11/2025', bannerLink: 'https://redbulltcp.freefiremobile.com/?lang=vn&region=VN', title: 'FREE FIRE X REDBULL' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/1ba5e066c1fa66a9b192dc6b943187cb.png', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/en/article/1566/', title: 'THAILAND’S BURIRAM UNITED ESPORTS TRIUMPHS AS FREE FIRE’S NEW WORLD CHAMPION' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/94a6014336306edfca0eb84b30d62e5a.png', startDate: '20/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1568/', title: 'FREE FIRE CHÍNH THỨC KHỞI ĐỘNG SỰ KIỆN HỢP TÁC CÙNG DIGIMON ADVENTURE!' },
@@ -160,6 +161,22 @@ const nationData = {
         ]
     },
 };
+
+// ⚠️ BẮT ĐẦU TÍCH HỢP IMAGEKIT ⚠️
+// Thay thế 'your_imagekit_id' bằng URL Endpoint thực tế của bạn
+const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
+
+/**
+ * Kiểm tra xem URL có phải là của ImageKit không
+ * @param {string} url
+ * @returns {boolean}
+ */
+function isImageKitUrl(url) {
+    // Kiểm tra xem url có tồn tại và có bao gồm endpoint không
+    return url && typeof url === 'string' && url.includes(IK_URL_ENDPOINT);
+}
+// ⚠️ KẾT THÚC TÍCH HỢP IMAGEKIT ⚠️
+
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navbar = document.querySelector('.navbar');
@@ -199,6 +216,7 @@ let activeLayer = layer1;
 let nextLayer = layer2;
 
 function showSection(section) {
+    if (!section) return; // Thêm bảo vệ nếu section không tồn tại
     const allSections = document.querySelectorAll('.content-section');
     allSections.forEach(s => s.classList.remove('active'));
     section.classList.add('active');
@@ -219,6 +237,8 @@ function showSection(section) {
 
 function updateSectionHeadings(path, key) {
     const t = translations[currentLanguage];
+
+    if (!nationHeading || !newsHeading) return; // Thêm bảo vệ
 
     if (path.startsWith('/nation/')) {
         const countryName = key.charAt(0).toUpperCase() + key.slice(1);
@@ -248,7 +268,7 @@ function handleRouting(path, key) {
 
     if (path === '/') {
         showSection(homeSection);
-        nationHeading.textContent = '';
+        if (nationHeading) nationHeading.textContent = '';
     }
     else if (path.startsWith('/nation/')) {
         showSection(nationSection);
@@ -315,6 +335,57 @@ function convertDateStringToDate(dateString) {
     return new Date(Date.UTC(year, month - 1, day));
 }
 
+
+// ⚠️ BẮT ĐẦU TÍCH HỢP IMAGEKIT ⚠️
+/**
+ * Tạo thuộc tính ảnh tối ưu (src, srcset, sizes)
+ * Sẽ tự động dùng SDK cho URL ImageKit, hoặc dùng URL gốc cho các URL khác.
+ * @param {string} imageDataUrl - URL đầy đủ của ảnh
+ * @param {string} altText - Văn bản thay thế (alt)
+ * @returns {object} - Một đối tượng chứa các thuộc tính (src, srcset, sizes, alt)
+ */
+function getOptimizedImageAttributes(imageDataUrl, altText) {
+    const defaultAttributes = {
+        src: imageDataUrl || '', // Đảm bảo src không bao giờ là null/undefined
+        alt: altText,
+    };
+
+    // Kiểm tra xem SDK đã tải VÀ URL có phải là của ImageKit không
+    // window.ImageKit phải được tải từ thẻ <script> trong HTML
+    if (window.ImageKit && isImageKitUrl(imageDataUrl)) {
+        // TRƯỜNG HỢP 1: Dùng URL ImageKit -> Tối ưu bằng SDK
+
+        // Trích xuất đường dẫn tương đối (loại bỏ phần Endpoint)
+        const relativePath = imageDataUrl.replace(IK_URL_ENDPOINT, '');
+
+        try {
+            // Sử dụng SDK để tạo các thuộc tính responsive
+            return window.ImageKit.getResponsiveImageAttributes({
+                urlEndpoint: IK_URL_ENDPOINT,
+                src: relativePath,
+                // Cài đặt responsive: Ảnh chiếm 30% trên màn hình lớn, 100% trên màn hình nhỏ
+                // (Bạn có thể điều chỉnh '30vw' này cho phù hợp với CSS của bạn)
+                sizes: "(min-width: 800px) 30vw, 100vw",
+                transformation: [{
+                    format: "auto", // Tự động chuyển WebP/AVIF
+                    crop: "at_max"  // Cắt thông minh
+                }],
+                alt: altText
+            });
+        } catch (error) {
+            console.error("ImageKit SDK error:", error, imageDataUrl);
+            // Nếu SDK lỗi, quay về dùng URL gốc
+            return defaultAttributes;
+        }
+    }
+
+    // TRƯỜNG HỢP 2: Dùng URL cũ (hoặc SDK chưa tải, hoặc URL rỗng) -> Trả về URL gốc
+    return defaultAttributes;
+}
+// ⚠️ KẾT THÚC TÍCH HỢP IMAGEKIT ⚠️
+
+
+// ⚠️ HÀM NÀY ĐÃ ĐƯỢC CẬP NHẬT ĐỂ SỬ DỤNG LOGIC HYBRID ⚠️
 function displayImages(key, isNews = false) {
     const targetGrid = isNews ? newsImageGrid : imageGrid;
     const data = nationData[key];
@@ -330,6 +401,7 @@ function displayImages(key, isNews = false) {
     }
 
     if (images.length === 0 || key === 'default') {
+        // ... (Logic hiển thị thông báo "Updating..." giữ nguyên)
         targetGrid.style.display = 'flex';
         targetGrid.style.flexDirection = 'column';
         targetGrid.style.justifyContent = 'center';
@@ -360,6 +432,7 @@ function displayImages(key, isNews = false) {
         return;
     }
 
+    // ... (Logic reset style và sort ảnh giữ nguyên)
     targetGrid.style.display = '';
     targetGrid.style.flexDirection = '';
     targetGrid.style.justifyContent = '';
@@ -384,6 +457,7 @@ function displayImages(key, isNews = false) {
         return dateB.getTime() - dateA.getTime();
     });
 
+    // ⚠️ BẮT ĐẦU LOGIC TẠO ẢNH MỚI (HYBRID) ⚠️
     images.forEach((imageData, index) => {
         const gridItem = document.createElement('div');
         gridItem.classList.add('grid-item');
@@ -403,38 +477,44 @@ function displayImages(key, isNews = false) {
         }
 
         const imgElement = document.createElement('img');
-        imgElement.src = imageData.url;
-        imgElement.alt = `${key} image`;
+        const altText = imageData.title || t['no_title'];
 
-        const titleElement = document.createElement('p');
-        titleElement.classList.add('grid-item-title');
-        titleElement.textContent = imageData.title || t['no_title'];
+        // ⭐️ SỬ DỤNG HÀM LAI MỚI ĐỂ LẤY THUỘC TÍNH ⭐️
+        const finalAttributes = getOptimizedImageAttributes(imageData.url, altText);
 
-        const tempImage = new Image();
+        // Gán các thuộc tính (src, srcset, sizes, alt)
+        Object.assign(imgElement, finalAttributes);
 
-        tempImage.onload = () => {
-            gridItem.appendChild(imgElement);
-            gridItem.appendChild(titleElement);
-            targetGrid.appendChild(gridItem);
-        };
-
-        tempImage.onerror = () => {
+        // Xử lý lỗi nếu ảnh (cũ hoặc mới) không tải được
+        imgElement.onerror = () => {
+            // Tạo thông báo lỗi
             const updatingDiv = document.createElement('div');
             updatingDiv.textContent = 'Updating...';
             updatingDiv.classList.add('updating-message');
 
-            gridItem.appendChild(updatingDiv);
-            gridItem.appendChild(titleElement);
-            targetGrid.appendChild(gridItem);
+            // Thay thế thẻ <img> bị lỗi bằng thẻ <div>
+            if (imgElement.parentNode) {
+                imgElement.parentNode.replaceChild(updatingDiv, imgElement);
+            }
         };
 
-        if (imageData.url) {
-            tempImage.src = imageData.url;
-        } else {
-            tempImage.onerror();
-        }
+        // Thêm <img> vào gridItem. Trình duyệt sẽ tự tải
+        gridItem.appendChild(imgElement);
+
+        // Thêm tiêu đề
+        const titleElement = document.createElement('p');
+        titleElement.classList.add('grid-item-title');
+        titleElement.textContent = altText;
+        gridItem.appendChild(titleElement);
+
+        // Thêm gridItem hoàn chỉnh vào lưới
+        targetGrid.appendChild(gridItem);
+
+        // ⚠️ LOGIC CŨ DÙNG tempImage.onload/onerror ĐÃ BỊ XÓA ⚠️
     });
 }
+// ⚠️ KẾT THÚC HÀM displayImages ĐÃ CẬP NHẬT ⚠️
+
 
 const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -461,21 +541,25 @@ navLinks.forEach(link => {
             }
 
             if (parentLi && parentLi.classList.contains('language-selector')) {
-                languageSelectorLi.classList.toggle('active');
+                if (languageSelectorLi) languageSelectorLi.classList.toggle('active');
                 return;
             }
 
             if (isCountryLink || path === '/' || path === '/contact' || path === '/news') {
-                navbar.classList.remove('active');
+                if (navbar) navbar.classList.remove('active');
                 if (nationDropdownLi) {
                     nationDropdownLi.classList.remove('active');
                 }
                 if (languageSelectorLi) {
                     languageSelectorLi.classList.remove('active');
                 }
-                const menuIcon = menuToggle.querySelector('i');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                if (menuToggle) {
+                    const menuIcon = menuToggle.querySelector('i');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
             }
         }
 
@@ -493,11 +577,13 @@ navLinks.forEach(link => {
 });
 
 
-logoLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    handleRouting('/', '');
-    setTimeout(startBackgroundSlideshow, 50);
-});
+if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleRouting('/', '');
+        setTimeout(startBackgroundSlideshow, 50);
+    });
+}
 
 languageLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -529,13 +615,21 @@ languageLinks.forEach(link => {
             const isNewsItem = (key === 'news');
 
             if (target.querySelector('.updating-message')) {
-                overlayImage.style.display = 'none';
+                if (overlayImage) overlayImage.style.display = 'none';
             } else {
-                overlayImage.style.display = 'block';
-                overlayImage.src = data.url;
+                if (overlayImage) {
+                    overlayImage.style.display = 'block';
+                    // ⚠️ CẬP NHẬT OVERLAY IMAGE ⚠️
+                    // Sử dụng logic hybrid cho ảnh trong overlay
+                    const altText = data.title || t['no_title'];
+                    const overlayAttrs = getOptimizedImageAttributes(data.url, altText);
+                    // Chỉ gán src vì overlay không cần srcset
+                    overlayImage.src = overlayAttrs.src;
+                    overlayImage.alt = overlayAttrs.alt;
+                }
             }
 
-            if (data) {
+            if (data && overlayTitle && overlayDate && overlayLink && gridOverlay) {
                 overlayTitle.textContent = data.title || t['no_title'];
                 const datePrefix = isNewsItem ? t['date_posting'] : t['start_date'];
                 overlayDate.textContent = `${datePrefix}: ${data.startDate || 'N/A'}`;
@@ -549,15 +643,19 @@ languageLinks.forEach(link => {
     }
 });
 
-closeBtn.addEventListener('click', () => {
-    gridOverlay.style.display = 'none';
-});
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        if (gridOverlay) gridOverlay.style.display = 'none';
+    });
+}
 
-gridOverlay.addEventListener('click', (e) => {
-    if (e.target === gridOverlay) {
-        gridOverlay.style.display = 'none';
-    }
-});
+if (gridOverlay) {
+    gridOverlay.addEventListener('click', (e) => {
+        if (e.target === gridOverlay) {
+            gridOverlay.style.display = 'none';
+        }
+    });
+}
 
 window.addEventListener('popstate', () => {
     const currentPath = window.location.pathname;
@@ -567,24 +665,28 @@ window.addEventListener('popstate', () => {
     handleRouting(currentPath, key);
 });
 
-menuToggle.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-    const menuIcon = menuToggle.querySelector('i');
+if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+        if (!navbar) return;
+        navbar.classList.toggle('active');
+        const menuIcon = menuToggle.querySelector('i');
+        if (!menuIcon) return;
 
-    if (navbar.classList.contains('active')) {
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-times');
-    } else {
-        menuIcon.classList.remove('fa-times');
-        menuIcon.classList.add('fa-bars');
-        if (nationDropdownLi) {
-            nationDropdownLi.classList.remove('active');
+        if (navbar.classList.contains('active')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+            if (nationDropdownLi) {
+                nationDropdownLi.classList.remove('active');
+            }
+            if (languageSelectorLi) {
+                languageSelectorLi.classList.remove('active');
+            }
         }
-        if (languageSelectorLi) {
-            languageSelectorLi.classList.remove('active');
-        }
-    }
-});
+    });
+}
 
 function preloadImages(imageUrls) {
     const promises = imageUrls.map(url => {
@@ -599,6 +701,7 @@ function preloadImages(imageUrls) {
 }
 
 function changeBackground() {
+    if (!activeLayer || !nextLayer) return;
     const totalImages = homeBackgrounds.length;
     if (totalImages < 2) return;
 
@@ -620,7 +723,7 @@ function changeBackground() {
 
 function startBackgroundSlideshow() {
     const totalImages = homeBackgrounds.length;
-    if (!homeSection || totalImages === 0) return;
+    if (!homeSection || totalImages === 0 || !layer1 || !layer2) return;
 
     if (slideshowInterval) {
         clearInterval(slideshowInterval);
