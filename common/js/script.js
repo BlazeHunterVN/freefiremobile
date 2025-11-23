@@ -85,9 +85,11 @@ function changeLanguageAndReload(langKey) {
 const nationData = {
     brazil: {
         images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', startDate: '17/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', title: '[REVENUE] Digimon Squad Treasure' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/SAMSUNG_1750x1070_BR_pt.jpg', startDate: '16/11/2025', bannerLink: 'https://shopee.com.br/m/samsung-e-freefire-na-shopee?utm_campaign=br_pd_social_youtube_a56_sustain_ac-2025GalaxyaH2-c-9mr5bq2878_video_skinFreefire-30s-na-na_awareness&utm_medium=diolv&utm_source=goads-9youtube&keeplink=true&cid=br_pd_social_youtube_a56_sustain_ac-2025GalaxyaH2-c-9mr5bq2878_video_skinFreefire-30s-na-na_awareness', title: '[BD] SAMSUNG' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Fist_Bump_1750x1070_BR_pt.png', startDate: '15/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Fist_Bump_1750x1070_BR_pt.png', title: '[REVENUE] Fist Bump' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_M590_Backpack_Vehicle_1750x1070_BR_pt.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_M590_Backpack_Vehicle_1750x1070_BR_pt.png', title: 'Digimon M590 Backpack Vehicle' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Bizon_Backpack_Lootbox_1750x1070_BR_pt.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Bizon_Backpack_Lootbox_1750x1070_BR_pt.png', title: 'Digimon Bizon Backpack Lootbox' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/FFWS_Unissex_Bundle_M500_1750x1070_BR_pt.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/FFWS_Unissex_Bundle_M500_1750x1070_BR_pt.png', title: 'FFWS Unissex Bundle M500' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', title: 'Digimon Squad Treasure' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Steel_Warrior_Bundle_1750x1070_BR_pt.png', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Steel_Warrior_Bundle_1750x1070_BR_pt.png', title: 'Steel Warrior Bundle' },
         ]
     },
     india: {
@@ -99,7 +101,7 @@ const nationData = {
     },
     indonesia: {
         images: [
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1750x1070_DigimonRingBizonSplashIND_en.jpg', startDate: '21/11/2025', bannerLink: 'https://dl-tata.freefireind.in/common/Local/IND/config/1750x1070_DigimonRingBizonSplashIND_en.jpg', title: 'Digimon Ring Bizon Splash' },
+            { url: 'https://dl.dir.freefiremobile.com/common/OB51/ID/splash_jkt.jpg', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/ID/splash_jkt.jpg', title: 'Splash JKT' },
             { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_TheLatestUpdatesINDanno_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefireindiaofficial/', title: 'Instagram Garena Free Fire' },
             { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_WatchTheBattleUnfoldINDAnno_en.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@FreeFireIndiaOfficial', title: 'YouTube Garena Free Fire' },
             { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_StayInLoopAnnIND_en.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefireIND', title: 'Facebook Garena Free Fire' },
@@ -107,9 +109,7 @@ const nationData = {
     },
     pakistan: {
         images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_RingMasterArrival_en.jpg', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_RingMasterArrival_en.jpg', title: 'Ring Master Arrival' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_SoulLandCG_en.jpg', startDate: '22/11/2025', bannerLink: 'https://www.youtube.com/watch?v=yGHGC0y7vG4', title: 'Soul Land CG' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_DigimonCG_en.jpg', startDate: '17/11/2025', bannerLink: 'youtube.com/watch?si=0hTON5Alaz4HVPFV&v=xLwoaPkUaf4&feature=youtu.be', title: 'Digimon CG' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_SoulLandRing_en.jpg', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_SoulLandRing_en.jpg', title: '' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_ig_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefirepkofficial/?hl=en', title: 'Instagram Garena Free Fire' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enfb.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefireenn/?brand_redir=139274140865488#', title: 'Facebook Garena Free Fire' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enyoutube.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@FreeFirePakistanOfficial', title: 'YouTube Garena Free Fire' },
@@ -131,17 +131,22 @@ const nationData = {
     },
     taiwan: {
         images: [
-
+            //{ url: '', startDate: '00/00/2025', bannerLink: '', title: '' },
         ]
     },
     thailand: {
         images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', startDate: '20/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', title: '2025Nov FA DIGI Weekly Login days OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_GroupTopup_DA.png', title: 'Nov25 GroupTopup' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Deal_damage_Weapon_Type_OverviewBG_1.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Deal_damage_Weapon_Type_OverviewBG_1.png', title: '2025Nov FA DIGI Weekly Deal damage Weapon Type OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TH Nov25 TW5 DA Bizon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', title: '2025Nov FA DIGI FlexHigh Playwithfriends games OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TH Nov25 TW6 IncubatorFashionVault PhantomBunny' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_WV1_Emoteparty_DynamicBG.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_WV1_Emoteparty_DynamicBG.png', title: 'WV1 Emoteparty DynamicBG' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TW5 DA Bizon' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', title: 'FA DIGI FlexHigh Playwithfriends Games OverviewBG 1' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', title: 'FA DIGI Weekly Login Days OverviewBG 1' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexLow_Play_mins_OverviewBG_1.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexLow_Play_mins_OverviewBG_1.png', title: 'FA DIGI Weekly Login Days OverviewBG 1' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TW5 DA Bizon' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Play_mins_2Mission_3.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Play_mins_2Mission_3.png', title: 'FA DIGI FlexHigh Play Mins 2Mission 3' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/PINK_Diamond_Exchange_Store.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/PINK_Diamond_Exchange_Store.png', title: 'PINK Diamond Exchange Store' },
+            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
         ]
     },
     vietnam: {
@@ -153,7 +158,6 @@ const nationData = {
     },
     news: {
         images: [
-            { url: 'https://ik.imagekit.io/blazehunter/free_fire_advance_server_ob52.png', startDate: '', bannerLink: 'https://mega.nz/file/sNcHGDhS', title: 'ADVANCE SERVER OB52' },
             { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/2025/11/FFxRedBull_20251119.png', startDate: '22/11/2025', bannerLink: 'https://redbulltcp.freefiremobile.com/?lang=vn&region=VN', title: 'FREE FIRE X REDBULL' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/1ba5e066c1fa66a9b192dc6b943187cb.png', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/en/article/1566/', title: 'THAILAND’S BURIRAM UNITED ESPORTS TRIUMPHS AS FREE FIRE’S NEW WORLD CHAMPION' },
             { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/94a6014336306edfca0eb84b30d62e5a.png', startDate: '20/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1568/', title: 'FREE FIRE CHÍNH THỨC KHỞI ĐỘNG SỰ KIỆN HỢP TÁC CÙNG DIGIMON ADVENTURE!' },
@@ -162,8 +166,6 @@ const nationData = {
     },
 };
 
-// ⚠️ BẮT ĐẦU TÍCH HỢP IMAGEKIT ⚠️
-// Thay thế 'your_imagekit_id' bằng URL Endpoint thực tế của bạn
 const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
 
 /**
@@ -175,8 +177,6 @@ function isImageKitUrl(url) {
     // Kiểm tra xem url có tồn tại và có bao gồm endpoint không
     return url && typeof url === 'string' && url.includes(IK_URL_ENDPOINT);
 }
-// ⚠️ KẾT THÚC TÍCH HỢP IMAGEKIT ⚠️
-
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navbar = document.querySelector('.navbar');
@@ -346,46 +346,34 @@ function convertDateStringToDate(dateString) {
  */
 function getOptimizedImageAttributes(imageDataUrl, altText) {
     const defaultAttributes = {
-        src: imageDataUrl || '', // Đảm bảo src không bao giờ là null/undefined
+        src: imageDataUrl || '',
         alt: altText,
     };
 
-    // Kiểm tra xem SDK đã tải VÀ URL có phải là của ImageKit không
-    // window.ImageKit phải được tải từ thẻ <script> trong HTML
     if (window.ImageKit && isImageKitUrl(imageDataUrl)) {
-        // TRƯỜNG HỢP 1: Dùng URL ImageKit -> Tối ưu bằng SDK
 
-        // Trích xuất đường dẫn tương đối (loại bỏ phần Endpoint)
         const relativePath = imageDataUrl.replace(IK_URL_ENDPOINT, '');
 
         try {
-            // Sử dụng SDK để tạo các thuộc tính responsive
             return window.ImageKit.getResponsiveImageAttributes({
                 urlEndpoint: IK_URL_ENDPOINT,
                 src: relativePath,
-                // Cài đặt responsive: Ảnh chiếm 30% trên màn hình lớn, 100% trên màn hình nhỏ
-                // (Bạn có thể điều chỉnh '30vw' này cho phù hợp với CSS của bạn)
                 sizes: "(min-width: 800px) 30vw, 100vw",
                 transformation: [{
-                    format: "auto", // Tự động chuyển WebP/AVIF
-                    crop: "at_max"  // Cắt thông minh
+                    format: "auto",
+                    crop: "at_max"
                 }],
                 alt: altText
             });
         } catch (error) {
             console.error("ImageKit SDK error:", error, imageDataUrl);
-            // Nếu SDK lỗi, quay về dùng URL gốc
             return defaultAttributes;
         }
     }
 
-    // TRƯỜNG HỢP 2: Dùng URL cũ (hoặc SDK chưa tải, hoặc URL rỗng) -> Trả về URL gốc
     return defaultAttributes;
 }
-// ⚠️ KẾT THÚC TÍCH HỢP IMAGEKIT ⚠️
 
-
-// ⚠️ HÀM NÀY ĐÃ ĐƯỢC CẬP NHẬT ĐỂ SỬ DỤNG LOGIC HYBRID ⚠️
 function displayImages(key, isNews = false) {
     const targetGrid = isNews ? newsImageGrid : imageGrid;
     const data = nationData[key];
@@ -401,7 +389,6 @@ function displayImages(key, isNews = false) {
     }
 
     if (images.length === 0 || key === 'default') {
-        // ... (Logic hiển thị thông báo "Updating..." giữ nguyên)
         targetGrid.style.display = 'flex';
         targetGrid.style.flexDirection = 'column';
         targetGrid.style.justifyContent = 'center';
@@ -432,7 +419,6 @@ function displayImages(key, isNews = false) {
         return;
     }
 
-    // ... (Logic reset style và sort ảnh giữ nguyên)
     targetGrid.style.display = '';
     targetGrid.style.flexDirection = '';
     targetGrid.style.justifyContent = '';
@@ -457,7 +443,6 @@ function displayImages(key, isNews = false) {
         return dateB.getTime() - dateA.getTime();
     });
 
-    // ⚠️ BẮT ĐẦU LOGIC TẠO ẢNH MỚI (HYBRID) ⚠️
     images.forEach((imageData, index) => {
         const gridItem = document.createElement('div');
         gridItem.classList.add('grid-item');
@@ -479,42 +464,32 @@ function displayImages(key, isNews = false) {
         const imgElement = document.createElement('img');
         const altText = imageData.title || t['no_title'];
 
-        // ⭐️ SỬ DỤNG HÀM LAI MỚI ĐỂ LẤY THUỘC TÍNH ⭐️
         const finalAttributes = getOptimizedImageAttributes(imageData.url, altText);
 
-        // Gán các thuộc tính (src, srcset, sizes, alt)
         Object.assign(imgElement, finalAttributes);
 
-        // Xử lý lỗi nếu ảnh (cũ hoặc mới) không tải được
         imgElement.onerror = () => {
-            // Tạo thông báo lỗi
+
             const updatingDiv = document.createElement('div');
             updatingDiv.textContent = 'Updating...';
             updatingDiv.classList.add('updating-message');
 
-            // Thay thế thẻ <img> bị lỗi bằng thẻ <div>
             if (imgElement.parentNode) {
                 imgElement.parentNode.replaceChild(updatingDiv, imgElement);
             }
         };
 
-        // Thêm <img> vào gridItem. Trình duyệt sẽ tự tải
         gridItem.appendChild(imgElement);
 
-        // Thêm tiêu đề
         const titleElement = document.createElement('p');
         titleElement.classList.add('grid-item-title');
         titleElement.textContent = altText;
         gridItem.appendChild(titleElement);
 
-        // Thêm gridItem hoàn chỉnh vào lưới
         targetGrid.appendChild(gridItem);
 
-        // ⚠️ LOGIC CŨ DÙNG tempImage.onload/onerror ĐÃ BỊ XÓA ⚠️
     });
 }
-// ⚠️ KẾT THÚC HÀM displayImages ĐÃ CẬP NHẬT ⚠️
-
 
 const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -572,7 +547,7 @@ navLinks.forEach(link => {
 
         handleRouting(path, key);
 
-        setTimeout(startBackgroundSlideshow, 50); // Khởi động lại slideshow nếu quay về Home
+        setTimeout(startBackgroundSlideshow, 50);
     });
 });
 
@@ -619,11 +594,10 @@ languageLinks.forEach(link => {
             } else {
                 if (overlayImage) {
                     overlayImage.style.display = 'block';
-                    // ⚠️ CẬP NHẬT OVERLAY IMAGE ⚠️
-                    // Sử dụng logic hybrid cho ảnh trong overlay
+
                     const altText = data.title || t['no_title'];
                     const overlayAttrs = getOptimizedImageAttributes(data.url, altText);
-                    // Chỉ gán src vì overlay không cần srcset
+
                     overlayImage.src = overlayAttrs.src;
                     overlayImage.alt = overlayAttrs.alt;
                 }
@@ -758,7 +732,6 @@ function startBackgroundSlideshow() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // applyTranslation sẽ sử dụng giá trị currentLanguage đã được tải từ localStorage
     applyTranslation(currentLanguage);
 
     const currentPath = window.location.pathname;
