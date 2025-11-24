@@ -2,7 +2,7 @@
 // ⭐ BƯỚC 1: CẤU HÌNH SUPABASE API (PHẢI THAY THẾ DỮ LIỆU THẬT) ⭐
 // ====================================================================
 const SUPABASE_URL = 'https://htesrjwwfctvimxilaus.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_yQTpJNR016GW-pImgH4K9A_Xk3_kH6r'; // Khóa công khai để đọc dữ liệu (anon key)
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZXNyand3ZmN0dmlteGlsYXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MjA4MzcsImV4cCI6MjA3OTQ5NjgzN30.2gdkcjolu2RBOfokarvGsaCV4xfJ3vXzEucnTC-96W0'; // Khóa công khai để đọc dữ liệu (anon key)
 const SUPABASE_TABLE = 'nation_banners'; // Tên bảng bạn đã tạo trong Supabase
 
 // ====================================================================
