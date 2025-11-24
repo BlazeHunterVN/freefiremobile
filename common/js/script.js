@@ -1,11 +1,6 @@
-// ====================================================================
-// ⭐ BƯỚC 1: CẤU HÌNH SUPABASE API (PHẢI THAY THẾ DỮ LIỆU THẬT) ⭐
-// ====================================================================
 const SUPABASE_URL = 'https://htesrjwwfctvimxilaus.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZXNyand3ZmN0dmlteGlsYXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MjA4MzcsImV4cCI6MjA3OTQ5NjgzN30.2gdkcjolu2RBOfokarvGsaCV4xfJ3vXzEucnTC-96W0'; // Khóa công khai để đọc dữ liệu (anon key)
-const SUPABASE_TABLE = 'nation_banners'; // Tên bảng bạn đã tạo trong Supabase
-
-// ====================================================================
+const SUPABASE_TABLE = 'nation_banners';
 
 const translations = {
     'vietnam': {
@@ -90,12 +85,7 @@ function changeLanguageAndReload(langKey) {
     window.location.reload();
 }
 
-// ====================================================================
-// ⭐ BƯỚC 2: DỮ LIỆU MẶC ĐỊNH (FALLBACK) VÀ KHỞI TẠO NATION DATA ⭐
-// (ĐÃ XÓA TẤT CẢ DỮ LIỆU MẪU CỨNG)
-// ====================================================================
 const initialNationData = {
-    // Chỉ giữ lại các key chính để đảm bảo cấu trúc nationData luôn sẵn sàng.
     brazil: { images: [] },
     india: { images: [] },
     indonesia: { images: [] },
@@ -109,9 +99,6 @@ const initialNationData = {
 
 const nationData = initialNationData;
 
-/**
- * Lấy dữ liệu từ Supabase API và chuyển đổi nó thành cấu trúc nationData.
- */
 async function fetchDataFromAPI() {
     if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
         console.warn("SUPABASE_URL chưa được cấu hình. Sử dụng dữ liệu mặc định.");
@@ -133,24 +120,19 @@ async function fetchDataFromAPI() {
 
         const rawData = await response.json();
 
-        // 1. Xóa tất cả các mảng images hiện tại (dữ liệu cứng/trống)
-        // Lấy danh sách keys từ dữ liệu đã load (nếu có key mới) và keys cũ
         const allKeys = new Set([...Object.keys(nationData), ...rawData.map(item => item.nation_key)]);
 
-        // Xóa/khởi tạo lại mảng images cho tất cả các key (cũ và mới)
         allKeys.forEach(key => {
             if (!nationData[key]) {
                 nationData[key] = { images: [] };
             } else {
-                nationData[key].images = []; // Xóa dữ liệu cũ trong nationData
+                nationData[key].images = [];
             }
         });
 
-        // 2. Tái tạo cấu trúc nationData từ dữ liệu API
         rawData.forEach(item => {
-            const nationKey = item.nation_key; // Đảm bảo khớp với tên cột trong Supabase
+            const nationKey = item.nation_key;
 
-            // Đảm bảo key tồn tại trước khi push (đã được xử lý ở bước 1, nhưng thêm kiểm tra an toàn)
             if (!nationData[nationKey]) {
                 nationData[nationKey] = { images: [] };
             }
@@ -170,7 +152,6 @@ async function fetchDataFromAPI() {
     }
 }
 
-
 const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
 
 /**
@@ -179,7 +160,6 @@ const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
  * @returns {boolean}
  */
 function isImageKitUrl(url) {
-    // Kiểm tra xem url có tồn tại và có bao gồm endpoint không
     return url && typeof url === 'string' && url.includes(IK_URL_ENDPOINT);
 }
 
@@ -200,7 +180,6 @@ const overlayDate = document.getElementById('overlay-date');
 const overlayLink = document.getElementById('overlay-link');
 const closeBtn = document.querySelector('.close-btn');
 const overlayImage = document.getElementById('overlay-image');
-// Lấy thẻ li cha của dropdown quốc gia
 const nationDropdownLi = document.querySelector('.dropdown:not(.language-selector)');
 const languageSelectorLi = document.querySelector('.language-selector');
 const languageLinks = document.querySelectorAll('.language-menu a');
@@ -247,7 +226,6 @@ function updateSectionHeadings(path, key) {
     if (!nationHeading || !newsHeading) return;
 
     if (path.startsWith('/nation/')) {
-        // Xử lý key thành tên hiển thị (ví dụ: vietnam -> Vietnam)
         const countryName = key.charAt(0).toUpperCase() + key.slice(1);
         nationHeading.textContent = `${t['select_country']}: ${countryName}`;
     }
@@ -285,7 +263,6 @@ function handleRouting(path, key) {
     else if (path === '/nation') {
         showSection(nationSection);
         updateSectionHeadings(path, key);
-        // Hiển thị nội dung mặc định khi chưa chọn quốc gia (dữ liệu trống)
         displayImages('default', false);
     }
     else if (path === '/news') {
@@ -314,7 +291,6 @@ function getEventStatus(startDateString) {
         return { status: 'none', label: '' };
     }
     const [day, month, year] = parts.map(Number);
-    // Sử dụng Date.UTC để tránh lỗi múi giờ
     const startDate = new Date(Date.UTC(year, month - 1, day));
 
     if (isNaN(startDate.getTime())) {
@@ -322,10 +298,8 @@ function getEventStatus(startDateString) {
     }
 
     const now = new Date();
-    // Tạo ngày hôm nay theo UTC để so sánh công bằng
     const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
 
-    // So sánh ngày (bỏ qua giờ)
     const eventDay = new Date(startDate.getUTCFullYear(), startDate.getUTCMonth(), startDate.getUTCDate());
 
     if (eventDay <= today) {
@@ -344,7 +318,6 @@ function convertDateStringToDate(dateString) {
         return new Date(0);
     }
     const [day, month, year] = parts.map(Number);
-    // Sử dụng Date.UTC để sắp xếp ngày chính xác
     return new Date(Date.UTC(year, month - 1, day));
 }
 
@@ -502,9 +475,6 @@ function displayImages(key, isNews = false) {
     });
 }
 
-/**
- * Hàm tách riêng xử lý click cho các link điều hướng
- */
 function handleNavLinkClick(e) {
     e.preventDefault();
 
@@ -521,7 +491,6 @@ function handleNavLinkClick(e) {
             if (nationDropdownLi) {
                 nationDropdownLi.classList.toggle('active');
             }
-            // Không chuyển trang, chỉ mở dropdown nếu đang ở mobile
             return;
         }
 
@@ -530,7 +499,6 @@ function handleNavLinkClick(e) {
             return;
         }
 
-        // Đóng menu mobile sau khi chọn link
         if (isCountryLink || path === '/' || path === '/contact' || path === '/news') {
             if (navbar) navbar.classList.remove('active');
             if (nationDropdownLi) {
@@ -549,7 +517,6 @@ function handleNavLinkClick(e) {
         }
     }
 
-    // Xử lý link ngoài
     if (path.startsWith('http://') || path.startsWith('https://') || path === '#') {
         if (path.startsWith('http') || path.startsWith('https')) {
             window.open(path, '_blank');
@@ -561,22 +528,14 @@ function handleNavLinkClick(e) {
     setTimeout(startBackgroundSlideshow, 50);
 }
 
-
-// Gán event listener cho tất cả các link (sau khi dropdown đã được tạo động)
-// Chúng ta sẽ gán lại khi tạo dropdown
 let navLinks = document.querySelectorAll('.nav-links a');
 
 function attachAllNavLinkListeners() {
     navLinks.forEach(link => {
-        // Gỡ bỏ listener cũ nếu có để tránh gọi nhiều lần
         link.removeEventListener('click', handleNavLinkClick);
         link.addEventListener('click', handleNavLinkClick);
     });
 }
-
-// ====================================================================
-// ⭐ HÀM TẠO DROPDOWN TỪ DỮ LIỆU TẢI XUỐNG ⭐
-// ====================================================================
 
 function populateNationDropdown() {
     const dropdownMenu = nationDropdownLi ? nationDropdownLi.querySelector('.dropdown-menu') : null;
@@ -585,20 +544,16 @@ function populateNationDropdown() {
         return;
     }
 
-    // Xóa tất cả các mục quốc gia cũ
     dropdownMenu.innerHTML = '';
 
-    // Lấy danh sách các key, loại trừ 'news' và sắp xếp
     const nationKeys = Object.keys(nationData)
         .filter(key => key !== 'news' && key !== 'default')
         .sort();
 
-    // Tạo các mục menu mới
     nationKeys.forEach(key => {
         const li = document.createElement('li');
         const a = document.createElement('a');
 
-        // Chuyển key thành định dạng tên quốc gia hiển thị
         const countryName = key.charAt(0).toUpperCase() + key.slice(1);
 
         a.href = `/nation/${key}`;
@@ -609,14 +564,12 @@ function populateNationDropdown() {
         dropdownMenu.appendChild(li);
     });
 
-    // Sau khi tạo lại các link quốc gia, cần cập nhật lại navLinks và gán lại listener
     navLinks = document.querySelectorAll('.nav-links a');
     attachAllNavLinkListeners();
 
     console.log(`Đã tạo ${nationKeys.length} mục quốc gia từ dữ liệu.`);
 }
 
-// Xử lý click logo
 if (logoLink) {
     logoLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -625,7 +578,6 @@ if (logoLink) {
     });
 }
 
-// Xử lý thay đổi ngôn ngữ
 languageLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -797,20 +749,13 @@ function startBackgroundSlideshow() {
         });
 }
 
-// ====================================================================
-// ⭐ BƯỚC 4: HÀM KHỞI TẠO CHÍNH ⭐
-// ====================================================================
-
 document.addEventListener('DOMContentLoaded', async () => {
     applyTranslation(currentLanguage);
 
-    // 1. Tải dữ liệu từ Supabase API 
     await fetchDataFromAPI();
 
-    // 2. TẠO DANH SÁCH QUỐC GIA TỰ ĐỘNG
     populateNationDropdown();
 
-    // 3. Xử lý routing và hiển thị nội dung
     const currentPath = window.location.pathname;
     const parts = currentPath.split('/');
     const key = parts[parts.length - 1];
