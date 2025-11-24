@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Noto-Extra-Bold';
-    src: url('../fonts/NotoSans_ExtraCondensed-Bold.ttf') format('truetype');
+    font-family: 'GFF-Latin-ExtraBold';
+    src: url('../fonts/GFF-Latin-ExtraBold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Noto-Extra-Bold', sans-serif;
+    font-family: 'GFF-Latin-ExtraBold', sans-serif;
     letter-spacing: 1px;
 }
 
