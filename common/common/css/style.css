@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'GFF-Latin-ExtraBold';
-    src: url('../fonts/GFF-Latin-ExtraBold.ttf') format('truetype');
+    font-family: 'BeVietnamPro-ExtraBold';
+    src: url('../fonts/BeVietnamPro-ExtraBold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'GFF-Latin-ExtraBold', sans-serif;
+    font-family: 'BeVietnamPro-ExtraBold', sans-serif;
     letter-spacing: 1px;
 }
 
@@ -66,7 +66,6 @@ ul {
 
 .nav-links {
     display: flex;
-    /* Giữ nguyên khoảng cách menu đã giảm */
     gap: 0.1rem;
     margin-right: 0;
 }
@@ -435,11 +434,8 @@ ul {
     font-size: 1.5rem;
     font-weight: bold;
     max-width: 100%;
-    /* Đảm bảo tiêu đề không rộng hơn thẻ cha */
     white-space: normal;
-    /* Cho phép văn bản xuống dòng */
     overflow-wrap: break-word;
-    /* Tên gọi chuẩn của 'word-wrap' */
     word-break: break-word;
 }
 
@@ -729,7 +725,6 @@ body.hide-footer .footer {
     margin-top: -2px;
 }
 
-/* Trong chế độ di động */
 @media (max-width: 768px) {
 
     .navbar.active .nav-link.lang-toggle img {
