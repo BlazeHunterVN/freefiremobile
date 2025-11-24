@@ -19,7 +19,7 @@ const translations = {
         'copyright': '© 2025 Bản Quyền Website Thuộc Về BlazeHunter.',
         'select_prompt': 'VUI LÒNG CHỌN MỘT QUỐC GIA',
         'update_banner': 'Dữ Liệu Biểu Ngữ Đang Được Cập Nhật.',
-        'update_news': 'Dữ liệu Tin tức Đang Được Cập Nhật.',
+        'update_news': 'Dữ liệu Tin Tức Đang Được Cập Nhật.',
         'start_date': 'Ngày Bắt Đầu',
         'date_posting': 'Ngày Đăng',
         'link_access': 'Truy Cập Link',
@@ -102,7 +102,7 @@ const nationData = initialNationData;
 async function fetchDataFromAPI() {
     if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
         console.warn("SUPABASE_URL chưa được cấu hình. Sử dụng dữ liệu mặc định.");
-        return; // Dùng dữ liệu mặc định (initialNationData trống)
+        return;
     }
 
     try {
@@ -485,7 +485,6 @@ function handleNavLinkClick(e) {
     const isDropdownLink = (parentLi && parentLi.classList.contains('dropdown'));
     const isCountryLink = (parentLi && parentLi.closest('.dropdown-menu') && !parentLi.classList.contains('language-selector'));
 
-    // Logic xử lý đóng/mở menu mobile
     if (window.innerWidth <= 768) {
         if (isDropdownLink && path === '/nation') {
             if (nationDropdownLi) {
@@ -624,8 +623,15 @@ languageLinks.forEach(link => {
             if (data && overlayTitle && overlayDate && overlayLink && gridOverlay) {
                 overlayTitle.textContent = data.title || t['no_title'];
                 const datePrefix = isNewsItem ? t['date_posting'] : t['start_date'];
-                overlayDate.textContent = `${datePrefix}: ${data.startDate || 'N/A'}`;
+                const dateString = data.startDate;
 
+                if (dateString) {
+                    overlayDate.textContent = `${datePrefix}: ${dateString}`;
+                    overlayDate.style.display = 'block';
+                } else {
+                    overlayDate.textContent = '';
+                    overlayDate.style.display = 'none';
+                }
                 overlayLink.textContent = t['link_access'];
                 overlayLink.href = data.bannerLink || '#';
                 overlayLink.target = '_blank';
