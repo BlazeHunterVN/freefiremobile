@@ -1,3 +1,12 @@
+// ====================================================================
+// ⭐ BƯỚC 1: CẤU HÌNH SUPABASE API (PHẢI THAY THẾ DỮ LIỆU THẬT) ⭐
+// ====================================================================
+const SUPABASE_URL = 'https://htesrjwwfctvimxilaus.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_yQTpJNR016GW-pImgH4K9A_Xk3_kH6r'; // Khóa công khai để đọc dữ liệu (anon key)
+const SUPABASE_TABLE = 'nation_banners'; // Tên bảng bạn đã tạo trong Supabase
+
+// ====================================================================
+
 const translations = {
     'vietnam': {
         'home_link': 'TRANG CHỦ',
@@ -65,7 +74,6 @@ function applyTranslation(langKey) {
     const currentPath = window.location.pathname;
     const parts = currentPath.split('/');
     const key = parts[parts.length - 1];
-    // Kiểm tra xem các section có tồn tại không trước khi truy cập classList
     if (nationSection && newsSection && (nationSection.classList.contains('active') || newsSection.classList.contains('active'))) {
         updateSectionHeadings(currentPath, key);
     }
@@ -82,89 +90,86 @@ function changeLanguageAndReload(langKey) {
     window.location.reload();
 }
 
-const nationData = {
-    brazil: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_M590_Backpack_Vehicle_1750x1070_BR_pt.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_M590_Backpack_Vehicle_1750x1070_BR_pt.png', title: 'Digimon M590 Backpack Vehicle' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Bizon_Backpack_Lootbox_1750x1070_BR_pt.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Bizon_Backpack_Lootbox_1750x1070_BR_pt.png', title: 'Digimon Bizon Backpack Lootbox' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/FFWS_Unissex_Bundle_M500_1750x1070_BR_pt.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/FFWS_Unissex_Bundle_M500_1750x1070_BR_pt.png', title: 'FFWS Unissex Bundle M500' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Digimon_Squad_Treasure_1750x1070_BR_pt.png', title: 'Digimon Squad Treasure' },
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Steel_Warrior_Bundle_1750x1070_BR_pt.png', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/BR/Steel_Warrior_Bundle_1750x1070_BR_pt.png', title: 'Steel Warrior Bundle' },
-        ]
-    },
-    india: {
-        images: [
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_TheLatestUpdatesINDanno_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefireindiaofficial/', title: 'Instagram Garena Free Fire' },
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_StayInLoopAnnIND_en.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefireIND', title: 'Facebook Garena Free Fire' },
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_WatchTheBattleUnfoldINDAnno_en.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@FreeFireIndiaOfficial', title: 'TikTok Garena Free Fire' },
-        ]
-    },
-    indonesia: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/OB51/ID/splash_jkt.jpg', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/OB51/ID/splash_jkt.jpg', title: 'Splash JKT' },
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_TheLatestUpdatesINDanno_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefireindiaofficial/', title: 'Instagram Garena Free Fire' },
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_WatchTheBattleUnfoldINDAnno_en.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@FreeFireIndiaOfficial', title: 'YouTube Garena Free Fire' },
-            { url: 'https://dl-tata.freefireind.in/common/Local/IND/config/1400x700_StayInLoopAnnIND_en.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefireIND', title: 'Facebook Garena Free Fire' },
-        ]
-    },
-    pakistan: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_SoulLandRing_en.jpg', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_SoulLandRing_en.jpg', title: '' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_ig_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefirepkofficial/?hl=en', title: 'Instagram Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enfb.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefireenn/?brand_redir=139274140865488#', title: 'Facebook Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enyoutube.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@FreeFirePakistanOfficial', title: 'YouTube Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_entiktok.jpg', startDate: '', bannerLink: 'https://www.tiktok.com/@garenafreefirepkofficial', title: 'TikTok Garena Free Fire' }
-        ]
-    },
-    singapore: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_RingMasterArrival_en.jpg', startDate: '22/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_RingMasterArrival_en.jpg', title: 'Ring Master Arrival' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_MetalgreymonRing1_en.jpg', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_MetalgreymonRing1_en.jpg', title: 'Metalgreymon Ring' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_DigimonTakeruPatamon_en.jpg', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_DigimonTakeruPatamon_en.jpg', title: 'Digimon Takeru Patamon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_DigimonCG_en.jpg', startDate: '20/11/2025', bannerLink: 'youtube.com/watch?si=F-lU7CbcnUHip_S5&v=3-UwfwzJRQE&feature=youtu.be', title: 'Digimon CG' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_MetalgreymonRing1_en.jpg', startDate: '20/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/BD/Splashanno/1750x1070_MetalgreymonRing1_en.jpg', title: 'Metalgreymon Ring' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_ig_en.jpg', startDate: '', bannerLink: 'https://www.instagram.com/freefiremalaysiaofficial/', title: 'Instagram Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enfb.jpg', startDate: '', bannerLink: 'https://www.facebook.com/freefiremalaysia/', title: 'Facebook Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_enyoutube.jpg', startDate: '', bannerLink: 'https://www.youtube.com/@freefiremalaysiaofficial', title: 'YouTube Garena Free Fire' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/IND/config/1400x700_entiktok.jpg', startDate: '', bannerLink: 'https://www.tiktok.com/@freefiremalaysiaofficial', title: 'TikTok Garena Free Fire' }
-        ]
-    },
-    taiwan: {
-        images: [
-            //{ url: '', startDate: '00/00/2025', bannerLink: '', title: '' },
-        ]
-    },
-    thailand: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_WV1_Emoteparty_DynamicBG.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_WV1_Emoteparty_DynamicBG.png', title: 'WV1 Emoteparty DynamicBG' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TW5 DA Bizon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Playwithfriends_games_OverviewBG_1.png', title: 'FA DIGI FlexHigh Playwithfriends Games OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '25/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_Weekly_Login_days_OverviewBG_1.png', title: 'FA DIGI Weekly Login Days OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexLow_Play_mins_OverviewBG_1.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexLow_Play_mins_OverviewBG_1.png', title: 'FA DIGI Weekly Login Days OverviewBG 1' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW5_DA_Bizon.png', title: 'TW5 DA Bizon' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Play_mins_2Mission_3.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/2025Nov_FA_DIGI_FlexHigh_Play_mins_2Mission_3.png', title: 'FA DIGI FlexHigh Play Mins 2Mission 3' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '24/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/PINK_Diamond_Exchange_Store.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/PINK_Diamond_Exchange_Store.png', title: 'PINK Diamond Exchange Store' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/TH/Splash/TH_Nov25_TW6_IncubatorFashionVault_PhantomBunny.png', title: 'TW6 IncubatorFashionVault PhantomBunny' },
-        ]
-    },
-    vietnam: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251126_OB47VN_FW3_Say_JKT48_Bundle.png', startDate: '26/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251126_OB47VN_FW3_Say_JKT48_Bundle.png', title: 'FW3 Say JKT48 Bundle' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251123_OB47VN_TW5_Incu_PEKINGOPERA.png', startDate: '23/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251123_OB47VN_TW5_Incu_PEKINGOPERA.png', title: 'TW5 Incu PEKINGOPERA' },
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251121_OB47VN_TW4_Bizon_MetalGreymon.png', startDate: '21/11/2025', bannerLink: 'https://dl.dir.freefiremobile.com/common/Local/VN/Splash_Upload/251121_OB47VN_TW4_Bizon_MetalGreymon.png', title: 'TW4 Bizon MetalGreymon' },
-        ]
-    },
-    news: {
-        images: [
-            { url: 'https://dl.dir.freefiremobile.com/common/Local/VN/2025/11/FFxRedBull_20251119.png', startDate: '22/11/2025', bannerLink: 'https://redbulltcp.freefiremobile.com/?lang=vn&region=VN', title: 'FREE FIRE X REDBULL' },
-            { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/1ba5e066c1fa66a9b192dc6b943187cb.png', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/en/article/1566/', title: 'THAILAND’S BURIRAM UNITED ESPORTS TRIUMPHS AS FREE FIRE’S NEW WORLD CHAMPION' },
-            { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/94a6014336306edfca0eb84b30d62e5a.png', startDate: '20/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1568/', title: 'FREE FIRE CHÍNH THỨC KHỞI ĐỘNG SỰ KIỆN HỢP TÁC CÙNG DIGIMON ADVENTURE!' },
-            { url: 'https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202511/0a893ebc2f08ac6f27bdd01a6b7ffc48.jpg', startDate: '19/11/2025', bannerLink: 'https://ff.garena.com/vn/article/1564/', title: 'CUỘC THI CAPCUT AI - LỄ HỘI TUYẾT FREE FIRE' },
-        ]
-    },
+// ====================================================================
+// ⭐ BƯỚC 2: DỮ LIỆU MẶC ĐỊNH (FALLBACK) VÀ KHỞI TẠO NATION DATA ⭐
+// (ĐÃ XÓA TẤT CẢ DỮ LIỆU MẪU CỨNG)
+// ====================================================================
+const initialNationData = {
+    // Chỉ giữ lại các key chính để đảm bảo cấu trúc nationData luôn sẵn sàng.
+    brazil: { images: [] },
+    india: { images: [] },
+    indonesia: { images: [] },
+    pakistan: { images: [] },
+    singapore: { images: [] },
+    taiwan: { images: [] },
+    thailand: { images: [] },
+    vietnam: { images: [] },
+    news: { images: [] },
 };
+
+const nationData = initialNationData;
+
+/**
+ * Lấy dữ liệu từ Supabase API và chuyển đổi nó thành cấu trúc nationData.
+ */
+async function fetchDataFromAPI() {
+    if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+        console.warn("SUPABASE_URL chưa được cấu hình. Sử dụng dữ liệu mặc định.");
+        return; // Dùng dữ liệu mặc định (initialNationData trống)
+    }
+
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=*`, {
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Lỗi API Supabase, Status:", response.status);
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const rawData = await response.json();
+
+        // 1. Xóa tất cả các mảng images hiện tại (dữ liệu cứng/trống)
+        // Lấy danh sách keys từ dữ liệu đã load (nếu có key mới) và keys cũ
+        const allKeys = new Set([...Object.keys(nationData), ...rawData.map(item => item.nation_key)]);
+
+        // Xóa/khởi tạo lại mảng images cho tất cả các key (cũ và mới)
+        allKeys.forEach(key => {
+            if (!nationData[key]) {
+                nationData[key] = { images: [] };
+            } else {
+                nationData[key].images = []; // Xóa dữ liệu cũ trong nationData
+            }
+        });
+
+        // 2. Tái tạo cấu trúc nationData từ dữ liệu API
+        rawData.forEach(item => {
+            const nationKey = item.nation_key; // Đảm bảo khớp với tên cột trong Supabase
+
+            // Đảm bảo key tồn tại trước khi push (đã được xử lý ở bước 1, nhưng thêm kiểm tra an toàn)
+            if (!nationData[nationKey]) {
+                nationData[nationKey] = { images: [] };
+            }
+
+            nationData[nationKey].images.push({
+                url: item.url,
+                startDate: item.start_date,
+                bannerLink: item.banner_link,
+                title: item.title
+            });
+        });
+
+        console.log("Dữ liệu đã được tải từ Supabase thành công!");
+
+    } catch (error) {
+        console.error("Không thể tải dữ liệu từ Supabase. Tiếp tục sử dụng dữ liệu mặc định/cũ.", error);
+    }
+}
+
 
 const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
 
@@ -195,6 +200,7 @@ const overlayDate = document.getElementById('overlay-date');
 const overlayLink = document.getElementById('overlay-link');
 const closeBtn = document.querySelector('.close-btn');
 const overlayImage = document.getElementById('overlay-image');
+// Lấy thẻ li cha của dropdown quốc gia
 const nationDropdownLi = document.querySelector('.dropdown:not(.language-selector)');
 const languageSelectorLi = document.querySelector('.language-selector');
 const languageLinks = document.querySelectorAll('.language-menu a');
@@ -216,7 +222,7 @@ let activeLayer = layer1;
 let nextLayer = layer2;
 
 function showSection(section) {
-    if (!section) return; // Thêm bảo vệ nếu section không tồn tại
+    if (!section) return;
     const allSections = document.querySelectorAll('.content-section');
     allSections.forEach(s => s.classList.remove('active'));
     section.classList.add('active');
@@ -238,9 +244,10 @@ function showSection(section) {
 function updateSectionHeadings(path, key) {
     const t = translations[currentLanguage];
 
-    if (!nationHeading || !newsHeading) return; // Thêm bảo vệ
+    if (!nationHeading || !newsHeading) return;
 
     if (path.startsWith('/nation/')) {
+        // Xử lý key thành tên hiển thị (ví dụ: vietnam -> Vietnam)
         const countryName = key.charAt(0).toUpperCase() + key.slice(1);
         nationHeading.textContent = `${t['select_country']}: ${countryName}`;
     }
@@ -278,6 +285,7 @@ function handleRouting(path, key) {
     else if (path === '/nation') {
         showSection(nationSection);
         updateSectionHeadings(path, key);
+        // Hiển thị nội dung mặc định khi chưa chọn quốc gia (dữ liệu trống)
         displayImages('default', false);
     }
     else if (path === '/news') {
@@ -306,15 +314,19 @@ function getEventStatus(startDateString) {
         return { status: 'none', label: '' };
     }
     const [day, month, year] = parts.map(Number);
-    const startDate = new Date(year, month - 1, day);
+    // Sử dụng Date.UTC để tránh lỗi múi giờ
+    const startDate = new Date(Date.UTC(year, month - 1, day));
 
     if (isNaN(startDate.getTime())) {
         return { status: 'none', label: '' };
     }
 
     const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const eventDay = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    // Tạo ngày hôm nay theo UTC để so sánh công bằng
+    const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+
+    // So sánh ngày (bỏ qua giờ)
+    const eventDay = new Date(startDate.getUTCFullYear(), startDate.getUTCMonth(), startDate.getUTCDate());
 
     if (eventDay <= today) {
         return { status: 'active', label: t['active'] };
@@ -332,14 +344,13 @@ function convertDateStringToDate(dateString) {
         return new Date(0);
     }
     const [day, month, year] = parts.map(Number);
+    // Sử dụng Date.UTC để sắp xếp ngày chính xác
     return new Date(Date.UTC(year, month - 1, day));
 }
 
 
-// ⚠️ BẮT ĐẦU TÍCH HỢP IMAGEKIT ⚠️
 /**
  * Tạo thuộc tính ảnh tối ưu (src, srcset, sizes)
- * Sẽ tự động dùng SDK cho URL ImageKit, hoặc dùng URL gốc cho các URL khác.
  * @param {string} imageDataUrl - URL đầy đủ của ảnh
  * @param {string} altText - Văn bản thay thế (alt)
  * @returns {object} - Một đối tượng chứa các thuộc tính (src, srcset, sizes, alt)
@@ -388,7 +399,7 @@ function displayImages(key, isNews = false) {
         return;
     }
 
-    if (images.length === 0 || key === 'default') {
+    if (images.length === 0 || key === 'default' || !nationData[key]) {
         targetGrid.style.display = 'flex';
         targetGrid.style.flexDirection = 'column';
         targetGrid.style.justifyContent = 'center';
@@ -491,67 +502,121 @@ function displayImages(key, isNews = false) {
     });
 }
 
-const navLinks = document.querySelectorAll('.nav-links a');
+/**
+ * Hàm tách riêng xử lý click cho các link điều hướng
+ */
+function handleNavLinkClick(e) {
+    e.preventDefault();
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
+    const path = e.target.getAttribute('href');
+    const parts = path.split('/');
+    const key = parts[parts.length - 1];
+    const parentLi = e.target.closest('li');
+    const isDropdownLink = (parentLi && parentLi.classList.contains('dropdown'));
+    const isCountryLink = (parentLi && parentLi.closest('.dropdown-menu') && !parentLi.classList.contains('language-selector'));
 
-        const path = e.target.getAttribute('href');
-        const parts = path.split('/');
-        const key = parts[parts.length - 1];
-        const parentLi = e.target.closest('li');
-        const isDropdownLink = (parentLi && parentLi.classList.contains('dropdown'));
-        const isCountryLink = (parentLi && parentLi.closest('.dropdown-menu') && !parentLi.classList.contains('language-selector'));
-        const isLanguageLink = (parentLi && parentLi.closest('.language-menu'));
-
-
-        if (window.innerWidth <= 768) {
-            if (isDropdownLink && !isCountryLink && path === '/nation') {
-                if (nationDropdownLi) {
-                    nationDropdownLi.classList.toggle('active');
-                }
-                handleRouting(path, 'default');
-                return;
+    // Logic xử lý đóng/mở menu mobile
+    if (window.innerWidth <= 768) {
+        if (isDropdownLink && path === '/nation') {
+            if (nationDropdownLi) {
+                nationDropdownLi.classList.toggle('active');
             }
-
-            if (parentLi && parentLi.classList.contains('language-selector')) {
-                if (languageSelectorLi) languageSelectorLi.classList.toggle('active');
-                return;
-            }
-
-            if (isCountryLink || path === '/' || path === '/contact' || path === '/news') {
-                if (navbar) navbar.classList.remove('active');
-                if (nationDropdownLi) {
-                    nationDropdownLi.classList.remove('active');
-                }
-                if (languageSelectorLi) {
-                    languageSelectorLi.classList.remove('active');
-                }
-                if (menuToggle) {
-                    const menuIcon = menuToggle.querySelector('i');
-                    if (menuIcon) {
-                        menuIcon.classList.remove('fa-times');
-                        menuIcon.classList.add('fa-bars');
-                    }
-                }
-            }
-        }
-
-        if (path.startsWith('http://') || path.startsWith('https://') || path === '#') {
-            if (path.startsWith('http') || path.startsWith('https')) {
-                window.open(path, '_blank');
-            }
+            // Không chuyển trang, chỉ mở dropdown nếu đang ở mobile
             return;
         }
 
-        handleRouting(path, key);
+        if (parentLi && parentLi.classList.contains('language-selector')) {
+            if (languageSelectorLi) languageSelectorLi.classList.toggle('active');
+            return;
+        }
 
-        setTimeout(startBackgroundSlideshow, 50);
+        // Đóng menu mobile sau khi chọn link
+        if (isCountryLink || path === '/' || path === '/contact' || path === '/news') {
+            if (navbar) navbar.classList.remove('active');
+            if (nationDropdownLi) {
+                nationDropdownLi.classList.remove('active');
+            }
+            if (languageSelectorLi) {
+                languageSelectorLi.classList.remove('active');
+            }
+            if (menuToggle) {
+                const menuIcon = menuToggle.querySelector('i');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+        }
+    }
+
+    // Xử lý link ngoài
+    if (path.startsWith('http://') || path.startsWith('https://') || path === '#') {
+        if (path.startsWith('http') || path.startsWith('https')) {
+            window.open(path, '_blank');
+        }
+        return;
+    }
+
+    handleRouting(path, key);
+    setTimeout(startBackgroundSlideshow, 50);
+}
+
+
+// Gán event listener cho tất cả các link (sau khi dropdown đã được tạo động)
+// Chúng ta sẽ gán lại khi tạo dropdown
+let navLinks = document.querySelectorAll('.nav-links a');
+
+function attachAllNavLinkListeners() {
+    navLinks.forEach(link => {
+        // Gỡ bỏ listener cũ nếu có để tránh gọi nhiều lần
+        link.removeEventListener('click', handleNavLinkClick);
+        link.addEventListener('click', handleNavLinkClick);
     });
-});
+}
 
+// ====================================================================
+// ⭐ HÀM TẠO DROPDOWN TỪ DỮ LIỆU TẢI XUỐNG ⭐
+// ====================================================================
 
+function populateNationDropdown() {
+    const dropdownMenu = nationDropdownLi ? nationDropdownLi.querySelector('.dropdown-menu') : null;
+    if (!dropdownMenu) {
+        console.error("Nation Dropdown container not found.");
+        return;
+    }
+
+    // Xóa tất cả các mục quốc gia cũ
+    dropdownMenu.innerHTML = '';
+
+    // Lấy danh sách các key, loại trừ 'news' và sắp xếp
+    const nationKeys = Object.keys(nationData)
+        .filter(key => key !== 'news' && key !== 'default')
+        .sort();
+
+    // Tạo các mục menu mới
+    nationKeys.forEach(key => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+
+        // Chuyển key thành định dạng tên quốc gia hiển thị
+        const countryName = key.charAt(0).toUpperCase() + key.slice(1);
+
+        a.href = `/nation/${key}`;
+        a.textContent = countryName;
+        a.classList.add('nation-link');
+
+        li.appendChild(a);
+        dropdownMenu.appendChild(li);
+    });
+
+    // Sau khi tạo lại các link quốc gia, cần cập nhật lại navLinks và gán lại listener
+    navLinks = document.querySelectorAll('.nav-links a');
+    attachAllNavLinkListeners();
+
+    console.log(`Đã tạo ${nationKeys.length} mục quốc gia từ dữ liệu.`);
+}
+
+// Xử lý click logo
 if (logoLink) {
     logoLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -560,6 +625,7 @@ if (logoLink) {
     });
 }
 
+// Xử lý thay đổi ngôn ngữ
 languageLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -731,9 +797,20 @@ function startBackgroundSlideshow() {
         });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// ====================================================================
+// ⭐ BƯỚC 4: HÀM KHỞI TẠO CHÍNH ⭐
+// ====================================================================
+
+document.addEventListener('DOMContentLoaded', async () => {
     applyTranslation(currentLanguage);
 
+    // 1. Tải dữ liệu từ Supabase API 
+    await fetchDataFromAPI();
+
+    // 2. TẠO DANH SÁCH QUỐC GIA TỰ ĐỘNG
+    populateNationDropdown();
+
+    // 3. Xử lý routing và hiển thị nội dung
     const currentPath = window.location.pathname;
     const parts = currentPath.split('/');
     const key = parts[parts.length - 1];
