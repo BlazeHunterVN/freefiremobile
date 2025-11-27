@@ -700,12 +700,8 @@ body.hide-footer .footer {
 
 @media (min-width: 1025px) {
 
-    #news-image-grid {
+    .image-grid {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .image-grid:not(#news-image-grid) {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     #home-section h2 {
@@ -731,5 +727,4 @@ body.hide-footer .footer {
         width: 1.3rem;
         margin-top: 0;
     }
-
 }
