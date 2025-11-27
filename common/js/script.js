@@ -1,5 +1,5 @@
 const SUPABASE_URL = 'https://htesrjwwfctvimxilaus.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZXNyand3ZmN0dmlteGlsYXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MjA4MzcsImV4cCI6MjA3OTQ5NjgzN30.2gdkcjolu2RBOfokarvGsaCV4xfJ3vXzEucnTC-96W0'; // Khóa công khai để đọc dữ liệu (anon key)
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZXNyand3ZmN0dmlteGlsYXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MjA4MzcsImV4cCI6MjA3OTQ5NjgzN30.2gdkcjolu2RBOfokarvGsaCV4xfJ3vXzEucnTC-96W0';
 const SUPABASE_TABLE = 'nation_banners';
 
 const translations = {
@@ -54,6 +54,7 @@ const translations = {
 };
 
 let currentLanguage = localStorage.getItem('currentLang') || 'default';
+let userInteracted = false;
 
 function applyTranslation(langKey) {
     const translationSet = translations[langKey] || translations['default'];
@@ -74,9 +75,6 @@ function applyTranslation(langKey) {
     }
 }
 
-/**
- * @param {string} langKey
- */
 function changeLanguageAndReload(langKey) {
     if (langKey) {
         localStorage.setItem('currentLang', langKey);
@@ -101,7 +99,6 @@ const nationData = initialNationData;
 
 async function fetchDataFromAPI() {
     if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
-        console.warn("SUPABASE_URL chưa được cấu hình. Sử dụng dữ liệu mặc định.");
         return;
     }
 
@@ -114,7 +111,6 @@ async function fetchDataFromAPI() {
         });
 
         if (!response.ok) {
-            console.error("Lỗi API Supabase, Status:", response.status);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
@@ -145,20 +141,12 @@ async function fetchDataFromAPI() {
             });
         });
 
-        console.log("Dữ liệu đã được tải từ Supabase thành công!");
-
     } catch (error) {
-        console.error("Không thể tải dữ liệu từ Supabase. Tiếp tục sử dụng dữ liệu mặc định/cũ.", error);
     }
 }
 
 const IK_URL_ENDPOINT = "https://ik.imagekit.io/blazehunter/";
 
-/**
- * Kiểm tra xem URL có phải là của ImageKit không
- * @param {string} url
- * @returns {boolean}
- */
 function isImageKitUrl(url) {
     return url && typeof url === 'string' && url.includes(IK_URL_ENDPOINT);
 }
@@ -184,21 +172,26 @@ const nationDropdownLi = document.querySelector('.dropdown:not(.language-selecto
 const languageSelectorLi = document.querySelector('.language-selector');
 const languageLinks = document.querySelectorAll('.language-menu a');
 
-const homeBackgrounds = [
-    '/common/image/background_free_fire_22.png',
-    '/common/image/background_free_fire_9.png',
-    '/common/image/background_free_fire_63.png',
-    '/common/image/background_free_fire_41.png',
-];
+const backgroundVideo = document.getElementById('background-video');
+const isMobileScreen = window.matchMedia("(max-width: 768px)").matches;
 
-let currentBgIndex = 0;
-let slideshowInterval;
+function tryToPlayVideo() {
+    if (backgroundVideo && homeSection.classList.contains('active') && !isMobileScreen) {
+        backgroundVideo.play().then(() => {
+            userInteracted = true;
+            document.removeEventListener('click', tryToPlayVideo);
+            document.removeEventListener('touchend', tryToPlayVideo);
+        }).catch(error => {
+        });
+    }
+}
 
-const layer1 = document.getElementById('background-layer-1');
-const layer2 = document.getElementById('background-layer-2');
-
-let activeLayer = layer1;
-let nextLayer = layer2;
+function stopVideo() {
+    if (backgroundVideo && !isMobileScreen) {
+        backgroundVideo.pause();
+        backgroundVideo.currentTime = 0;
+    }
+}
 
 function showSection(section) {
     if (!section) return;
@@ -207,7 +200,11 @@ function showSection(section) {
     section.classList.add('active');
 
     if (section !== homeSection) {
-        clearInterval(slideshowInterval);
+        stopVideo();
+    } else {
+        if (userInteracted) {
+            tryToPlayVideo();
+        }
     }
 
     const body = document.body;
@@ -321,13 +318,6 @@ function convertDateStringToDate(dateString) {
     return new Date(Date.UTC(year, month - 1, day));
 }
 
-
-/**
- * Tạo thuộc tính ảnh tối ưu (src, srcset, sizes)
- * @param {string} imageDataUrl - URL đầy đủ của ảnh
- * @param {string} altText - Văn bản thay thế (alt)
- * @returns {object} - Một đối tượng chứa các thuộc tính (src, srcset, sizes, alt)
- */
 function getOptimizedImageAttributes(imageDataUrl, altText) {
     const defaultAttributes = {
         src: imageDataUrl || '',
@@ -350,7 +340,6 @@ function getOptimizedImageAttributes(imageDataUrl, altText) {
                 alt: altText
             });
         } catch (error) {
-            console.error("ImageKit SDK error:", error, imageDataUrl);
             return defaultAttributes;
         }
     }
@@ -368,7 +357,6 @@ function displayImages(key, isNews = false) {
     targetGrid.innerHTML = '';
 
     if (!targetGrid) {
-        console.error("Target grid element not found.");
         return;
     }
 
@@ -524,7 +512,6 @@ function handleNavLinkClick(e) {
     }
 
     handleRouting(path, key);
-    setTimeout(startBackgroundSlideshow, 50);
 }
 
 let navLinks = document.querySelectorAll('.nav-links a');
@@ -539,7 +526,6 @@ function attachAllNavLinkListeners() {
 function populateNationDropdown() {
     const dropdownMenu = nationDropdownLi ? nationDropdownLi.querySelector('.dropdown-menu') : null;
     if (!dropdownMenu) {
-        console.error("Nation Dropdown container not found.");
         return;
     }
 
@@ -566,14 +552,12 @@ function populateNationDropdown() {
     navLinks = document.querySelectorAll('.nav-links a');
     attachAllNavLinkListeners();
 
-    console.log(`Đã tạo ${nationKeys.length} mục quốc gia từ dữ liệu.`);
 }
 
 if (logoLink) {
     logoLink.addEventListener('click', (e) => {
         e.preventDefault();
         handleRouting('/', '');
-        setTimeout(startBackgroundSlideshow, 50);
     });
 }
 
@@ -686,75 +670,6 @@ if (menuToggle) {
     });
 }
 
-function preloadImages(imageUrls) {
-    const promises = imageUrls.map(url => {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve;
-            img.src = url;
-        });
-    });
-    return Promise.all(promises);
-}
-
-function changeBackground() {
-    if (!activeLayer || !nextLayer) return;
-    const totalImages = homeBackgrounds.length;
-    if (totalImages < 2) return;
-
-    currentBgIndex = (currentBgIndex + 1) % totalImages;
-
-    const nextNextBgIndex = (currentBgIndex + 1) % totalImages;
-
-    activeLayer.classList.remove('active');
-
-    // Swap layers
-    [activeLayer, nextLayer] = [nextLayer, activeLayer];
-
-    activeLayer.classList.add('active');
-
-    setTimeout(() => {
-        nextLayer.style.backgroundImage = `url('${homeBackgrounds[nextNextBgIndex]}')`;
-    }, 2000);
-}
-
-function startBackgroundSlideshow() {
-    const totalImages = homeBackgrounds.length;
-    if (!homeSection || totalImages === 0 || !layer1 || !layer2) return;
-
-    if (slideshowInterval) {
-        clearInterval(slideshowInterval);
-    }
-
-    if (!homeSection.classList.contains('active')) {
-        return;
-    }
-
-    preloadImages(homeBackgrounds)
-        .then(() => {
-            if (totalImages === 1) {
-                layer1.style.backgroundImage = `url('${homeBackgrounds[0]}')`;
-                layer1.classList.add('active');
-                layer2.classList.remove('active');
-                return;
-            }
-
-            layer1.style.backgroundImage = `url('${homeBackgrounds[0]}')`;
-            layer1.classList.add('active');
-
-            const nextIndex = (currentBgIndex + 1) % totalImages;
-            layer2.style.backgroundImage = `url('${homeBackgrounds[nextIndex]}')`;
-            layer2.classList.remove('active');
-
-            activeLayer = layer1;
-            nextLayer = layer2;
-            currentBgIndex = 0;
-
-            slideshowInterval = setInterval(changeBackground, 5000);
-        });
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
     applyTranslation(currentLanguage);
 
@@ -767,6 +682,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const key = parts[parts.length - 1];
 
     handleRouting(currentPath, key);
-
-    setTimeout(startBackgroundSlideshow, 100);
 });
+
+document.addEventListener('click', tryToPlayVideo, { once: true });
+document.addEventListener('touchend', tryToPlayVideo, { once: true });
