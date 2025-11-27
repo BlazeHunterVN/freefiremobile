@@ -10,7 +10,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-Y7ZWX4ZZ5Q');
+        gtag('config', 'G-NSFSR99C30');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Fire | Page Update Banner Event</title>
@@ -64,13 +64,15 @@
 
     <main class="main-content">
         <section id="home-section" class="content-section active">
-            <div id="background-layer-1" class="bg-layer active"></div>
-            <div id="background-layer-2" class="bg-layer"></div>
+            <video id="background-video" autoplay loop preload="auto" playsinline muted>
+                <source src="https://ik.imagekit.io/blazehunter/NewYinYang.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <img id="background-image-mobile" src="/common/image/background_free_fire_01.png"
+                alt="Mobile Background Image">
 
             <div class="home-content">
-                <h2 id="home-heading-1" data-i18n="welcome_heading">BLAZE HUNTER</h2>
-                <p id="home-paragraph-1" data-i18n="welcome_paragraph">Page Providing Free Fire Game Banner And Latest
-                    Updates.</p>
             </div>
         </section>
 
@@ -130,6 +132,7 @@
     <footer class="footer">
         <p class="copyright-text" data-i18n="copyright">&copy; 2025 Website Copyright Belongs To BlazeHunter.</p>
     </footer>
+    <script src="https://unpkg.com/@imagekit/javascript/dist/imagekit.min.js"></script>
     <script src="/common/js/script.js"></script>
 </body>
 
